@@ -1,0 +1,6 @@
+# action.yml
+name: 'docker-image-mbse'
+description: 'MBSE BBS Docker Image'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
