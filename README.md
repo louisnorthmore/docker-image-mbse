@@ -1,3 +1,5 @@
+[![Docker Image CI](https://github.com/louisnorthmore/docker-image-mbse/actions/workflows/docker-image.yml/badge.svg)](https://github.com/louisnorthmore/docker-image-mbse/actions/workflows/docker-image.yml)
+
 # MBSE BBS in a Box
 
 This project will build a Docker image that can be used to run an MBSE
