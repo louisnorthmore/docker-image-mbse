@@ -1,30 +1,43 @@
-FROM fedora
+FROM debian:stable-slim
 ENV MBSE_ROOT=/opt/mbse
 
 RUN mkdir -p /docker
 
-RUN dnf -y install \
-	darkhttpd \
+RUN apt update && apt -y install \
 	findutils \
 	gcc \
 	git \
-	iproute \
+	iproute2 \
 	make \
 	mgetty \
-	ncurses-devel \
+	libncurses5-dev \
+	libncursesw5-dev \
 	net-tools \
-	openssh-server \
+	ssh \
 	passwd \
-	procps-ng \
-	python-pip \
+	procps \
+	python3-pip \
 	supervisor \
 	tar \
-	telnet-server \
+	telnetd \
 	unzip \
 	vim \
 	xinetd \
 	zip \
-	zlib-devel
+	zlib1g-dev \
+	libz-dev \
+	libbz2-dev \
+	automake \
+	lrzsz \
+	arj \
+	lhasa \
+	arc \
+	nano \
+	supervisor \
+	multitail \
+	htop \
+	joe \
+	clamav
 
 RUN mkdir -p /src
 WORKDIR /src
@@ -48,8 +61,8 @@ EXPOSE 23 80 24554 60177 60179
 COPY entrypoint.sh /docker/entrypoint.sh
 ENTRYPOINT ["sh", "/docker/entrypoint.sh"]
 
-COPY supervisord.d /etc/supervisord.d/
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf", "-n"]
+COPY supervisord.d/* /etc/supervisor/conf.d/
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf", "-n"]
 
 COPY python-mbse /root/python-mbse
 RUN cd /root/python-mbse; pip install .

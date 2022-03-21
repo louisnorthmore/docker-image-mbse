@@ -16,3 +16,4 @@ done
 install -m 755 -o mbse -g bbs -d /srv/mbse/www/htdocs
 ln -s /srv/mbse/www /var/www
 ln -s /opt/mbse/html /srv/mbse/www/htdocs/docs
+ln -s /opt/mbse/share/doc /srv/mbse/www/htdocs/doc
